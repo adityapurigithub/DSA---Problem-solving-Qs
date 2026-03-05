@@ -1,0 +1,39 @@
+//Problem: Given a non-empty array of integers nums, every element appears twice except for one. Find that single one. Try to implement a solution with a linear runtime complexity and use only constant $O(1)$ extra space (Hint: think about bitwise operators, specifically XOR).
+
+function findSingle(arr){
+  const map=new Map();
+  
+  for(let i=0;i<arr.length;i++){
+    if(map.has(arr[i])){
+      map.set(arr[i],map.get(arr[i])+1);
+    }else{
+      map.set(arr[i],1);
+    }
+   
+  }
+  
+  for(let [key, value] of map){
+    if(value === 1) return key;
+  }
+  
+  return -1;
+  
+}
+
+// console.log(findSingle([1,2,1,4,3,3,2]));
+
+
+// optimized way using XOR --------------
+
+function findSingle(arr){
+  let result = 0;
+
+  for(let num of arr){
+    result ^= num;
+    console.log(result);
+  }
+
+  return result;
+}
+
+console.log(findSingle([1,2,1,4,3,3,2]));
